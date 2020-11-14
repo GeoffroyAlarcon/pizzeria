@@ -9,6 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:url var="deconnexion" value="/deconnexion"></c:url>
+<a href="${ deconnexion }">Cliquer ici pour se déconnecter.</a>
 <h1> Content de vous revoir  ${ sessionScope.perso.prenom}, ${ sessionScope.perso.nom} !</h1>
 <h2> Que souhaitez vous faire comme pizza ce soir ? </h2>
 

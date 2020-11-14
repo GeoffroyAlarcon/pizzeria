@@ -12,5 +12,7 @@
 <c:forEach items="${ pizzas }" var="pizza" varStatus="status">
     <p>Nom de la pizza :  <c:out value="${ pizza.nom}" /> , origine :   <c:out value="${pizza.type }"></c:out> </p>
 </c:forEach>
+<c:url var="deconnexion" value="/deconnexion"></c:url>
+<a href="${ deconnexion }">Cliquer ici pour se déconnecter.</a>
 </body>
 </html>
