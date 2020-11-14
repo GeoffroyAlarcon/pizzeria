@@ -8,6 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+<c:url var="deconnexion" value="/deconnexion"></c:url>
+<a href="${ deconnexion }">Cliquer ici pour se déconnecter.</a>
+
 <h1> Bienvenue Cher  ${ sessionScope.perso.prenom}, ${ sessionScope.perso.nom} !</h1>
 <h2>  que souhaitez vous mangez ? </h2>
 <c:forEach items="${ affichePizza }" var="pizza" varStatus="status">
