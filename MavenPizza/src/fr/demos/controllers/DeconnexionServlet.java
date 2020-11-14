@@ -32,7 +32,7 @@ public class DeconnexionServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		session.removeAttribute("perso");
-		response.sendRedirect("auth");
+		response.sendRedirect("auth"); 
 	}
 
 	/**
