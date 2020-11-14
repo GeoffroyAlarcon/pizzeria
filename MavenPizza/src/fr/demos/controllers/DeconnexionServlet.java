@@ -32,8 +32,7 @@ public class DeconnexionServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		session.removeAttribute("perso");
-	this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
-
+		response.sendRedirect("auth");
 	}
 
 	/**
