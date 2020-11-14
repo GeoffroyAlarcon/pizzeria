@@ -10,6 +10,13 @@ public Pizza(int id, String type, String nom) {
 	this.type = type;
 	this.nom = nom;
 }
+
+public Pizza(String type, String nom) {
+	super();
+	this.type = type;
+	this.nom = nom;
+}
+
 public Pizza() {
 
 }

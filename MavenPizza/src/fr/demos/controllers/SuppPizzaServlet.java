@@ -6,13 +6,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.demos.services.PizzaService;
 
 /**
- * Servlet implementation class SuppPiizServlet
  */
-@WebServlet("/pizza/supp")
+@WebServlet("/pizza/delete")
 public class SuppPizzaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private PizzaService  pizzaService = new PizzaService();
@@ -29,7 +29,7 @@ public class SuppPizzaServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setAttribute("pizzas", pizzaService.findAll());
+		request.setAttribute("affichePizza", pizzaService.findAll());
 		this.getServletContext().getRequestDispatcher("/WEB-INF/personne/client.jsp").forward(request, response);
 	}
 
@@ -39,8 +39,10 @@ public class SuppPizzaServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String nom = request.getParameter("nom");
-		pizzaService.remove(nom);
-	
+		pizzaService.removePizza(nom);
+		HttpSession session = request.getSession();
+		session.setAttribute("pizzas",  pizzaService);
+		response.sendRedirect("confirmation");
 	}
 
 }

@@ -51,8 +51,18 @@ public class AuthServlet extends HttpServlet {
 		Personne personne = new Personne(prenom, nom);
 
 		if (personneService.findByNomAndPrenom(nom, prenom)) {
-			session.setAttribute("perso", personne);
-			response.sendRedirect("pizza/supp");
+		
+
+			if (personne.getNom().contains("wick")) {
+				personne.setType("producteur");
+				session.setAttribute("perso", personne);
+				response.sendRedirect("pizza/add");
+			} else {
+				personne.setType("consommateur");
+				session.setAttribute("perso", personne);
+				response.sendRedirect("pizza/delete");
+
+			}
 
 		} else {
 			request.setAttribute("error", "cet utilisateur n'existe pas");

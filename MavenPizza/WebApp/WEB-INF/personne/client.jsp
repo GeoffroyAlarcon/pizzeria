@@ -10,16 +10,16 @@
 <body>
 <h1> Bienvenue Cher  ${ sessionScope.perso.prenom}, ${ sessionScope.perso.nom} !</h1>
 <h2>  que souhaitez vous mangez ? </h2>
-<c:forEach items="${ pizzas }" var="pizza" varStatus="nom">
+<c:forEach items="${ affichePizza }" var="pizza" varStatus="status">
     <p>Nom de la pizza <c:out value="${ pizza.nom}" /> </p>
 </c:forEach>
 
-<form method="POST" action="pizza/supp">
-		<div>Veuillez ajouter le nom de la pizza que vous souhaitez commandez</div>
+<form method="POST" action="delete">
+		<div>Quelle Pizza avez vous commandez ?</div>
 		<div>
 			<label for="nom">nom</label> <input type="text" id="nom" name="nom" /> 
 		</div>
-		<input type="submit" value="Supprimer" />
+		<input type="submit" value="choisir" />
 	</form>
 
 </body>

@@ -17,7 +17,7 @@ import fr.demos.models.Personne;
 /**
  * Servlet Filter implementation class AuthFilter
  */
-@WebFilter("/AuthFilter")
+@WebFilter("/*")
 public class AuthFilter implements Filter {
 
     /**
