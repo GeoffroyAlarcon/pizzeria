@@ -44,24 +44,16 @@ public class AuthServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
-		Personne personne = new Personne(prenom, nom);
-
-		if (personneService.findByNomAndPrenom(nom, prenom)) {
-		
-
+		Personne personne = personneService.findByNomAndPrenom(nom, prenom);
+		HttpSession session = request.getSession();
+		session.setAttribute("perso", personne);
+		if (personne != null) {
 			if (personne.getNom().contains("wick")) {
-				personne.setType("producteur");
-				session.setAttribute("perso", personne);
 				response.sendRedirect("pizza/add");
 			} else {
-				personne.setType("consommateur");
-				session.setAttribute("perso", personne);
 				response.sendRedirect("pizza/delete");
-
 			}
 
 		} else {

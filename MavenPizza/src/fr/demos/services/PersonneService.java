@@ -13,12 +13,12 @@ public class PersonneService {
 		personnes.add(new Personne(2, "mitro", "glou", "consommateur"));
 }
 	
-	public boolean findByNomAndPrenom(String nom, String prenom) {
+	public Personne findByNomAndPrenom(String nom, String prenom) {
 		for (int i = 0; i < personnes.size(); i++) {
 			if (personnes.get(i).getNom().equals(nom) && personnes.get(i).getPrenom().equals(prenom)) {
-				return true;
+			return personnes.get(i);
 			} ;
 		}
-		return false;
+		return null;
 	}
 }
