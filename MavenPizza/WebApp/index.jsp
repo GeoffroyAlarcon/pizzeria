@@ -11,6 +11,7 @@
 <body>
 	<div class="container-fluid bg-dark text-white text-center">
 		<h1>Authentification</h1>
+		<h2> Bienvenue sur Orinoco, le site spécialisé dans la vente d'ourson </h2>
 		<form action="auth" method="post">
 			<label for="nom"> Nom : </label> <input name="nom" type="text">
 			<label for="Prenom"> Prenom : </label> <input name="prenom"
