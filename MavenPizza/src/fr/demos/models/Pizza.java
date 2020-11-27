@@ -11,6 +11,16 @@ public Pizza(int id, String type, String nom) {
 	this.nom = nom;
 }
 
+
+/**
+ * @param nom
+ */
+public Pizza(String nom) {
+	super();
+	this.nom = nom;
+}
+
+
 public Pizza(String type, String nom) {
 	super();
 	this.type = type;

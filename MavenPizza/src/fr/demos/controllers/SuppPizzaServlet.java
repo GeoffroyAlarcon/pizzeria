@@ -8,40 +8,47 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.demos.services.PizzaService;
+import fr.demos.dao.PizzaDao;
+import fr.demos.models.Pizza;
 
 /**
  */
 @WebServlet("/pizza/delete")
 public class SuppPizzaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private PizzaService  pizzaService = new PizzaService();
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SuppPizzaServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	PizzaDao pizzaDao = new PizzaDao();
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public SuppPizzaServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setAttribute("affichePizza", pizzaService.findAll());
+		request.setAttribute("affichePizza", pizzaDao.findAll());
 		this.getServletContext().getRequestDispatcher("/WEB-INF/personne/client.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String nom = request.getParameter("nom");
-		pizzaService.removePizza(nom);
+		Pizza pizza = new Pizza(nom);
+		pizzaDao.remove(pizza);;
 		HttpSession session = request.getSession();
-		session.setAttribute("pizzas",  pizzaService);
+		session.setAttribute("pizzas", pizzaDao);
 		response.sendRedirect("confirmation");
 	}
 

@@ -13,6 +13,18 @@ public class Personne {
 		this.type = type;
 	}
 
+	/**
+	 * @param nom
+	 * @param prenom
+	 * @param type
+	 */
+	public Personne(String nom, String prenom, String type) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.type = type;
+	}
+
 	public Personne( String prenom, String nom) {
 		super();
 		this.nom = nom;

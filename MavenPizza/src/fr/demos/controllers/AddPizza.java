@@ -1,6 +1,7 @@
 package fr.demos.controllers;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.demos.services.PizzaService;
+import fr.demos.dao.PizzaDao;
+import fr.demos.models.Pizza;
 
 /**
  * Servlet implementation class AddPizza
@@ -16,7 +18,7 @@ import fr.demos.services.PizzaService;
 @WebServlet("/pizza/add")
 public class AddPizza extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private PizzaService pizzaService = new PizzaService();
+	private PizzaDao pizzaDao = new PizzaDao();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -44,9 +46,10 @@ public class AddPizza extends HttpServlet {
 			throws ServletException, IOException {
 		String nom = request.getParameter("nom");
 		String type = request.getParameter("type");
-		pizzaService.add(nom, type);
+	Pizza pizza = new Pizza(type, nom);
+		pizzaDao.save(pizza);
 		HttpSession session = request.getSession();
-		session.setAttribute("pizzas", pizzaService);
+		session.setAttribute("pizzas", pizzaDao);
 		response.sendRedirect("confirmation");
 	}
 

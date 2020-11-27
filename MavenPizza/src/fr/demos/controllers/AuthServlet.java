@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.demos.dao.PersonneDao;
 import fr.demos.models.Personne;
-import fr.demos.services.PersonneService;
 
 /**
  * Servlet implementation class AuthServlet
@@ -17,7 +17,7 @@ import fr.demos.services.PersonneService;
 @WebServlet("/auth")
 public class AuthServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private PersonneService personneService = new PersonneService();
+	private PersonneDao personneDao = new PersonneDao();
 
 	/**
 	 * Default constructor.
@@ -46,11 +46,12 @@ public class AuthServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
-		Personne personne = personneService.findByNomAndPrenom(nom, prenom);
+		Personne personne = personneDao.findByNomAndPrenom(nom, prenom);
 		HttpSession session = request.getSession();
 		session.setAttribute("perso", personne);
 		if (personne != null) {
-			if (personne.getNom().contains("wick")) {
+			if (personne.getType().contains("producteur")) {
+				System.out.println("hello");
 				response.sendRedirect("pizza/add");
 			} else {
 				response.sendRedirect("pizza/delete");

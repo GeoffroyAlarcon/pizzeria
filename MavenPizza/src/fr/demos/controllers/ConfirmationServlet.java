@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.demos.services.PizzaService;
+import fr.demos.dao.PizzaDao;
+
 
 /**
  * Servlet implementation class ConfirmationServlet
@@ -34,8 +35,8 @@ public class ConfirmationServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		HttpSession session = request.getSession();
-		PizzaService pizzaService = (PizzaService) session.getAttribute("pizzas");
-		request.setAttribute("pizzas", pizzaService.findAll());
+		PizzaDao pizzaDao = (PizzaDao) session.getAttribute("pizzas");
+		request.setAttribute("pizzas", pizzaDao.findAll());
 		this.getServletContext().getRequestDispatcher("/WEB-INF/confirmation.jsp").forward(request, response);
 	}
 
